@@ -44,8 +44,7 @@
   border: none;
   width: 20px;
   height: 20px;
-  padding: 40px 40px 0 0;
-
+  padding: 40px 40px;
   transform: rotate(-180deg);
   font-size: 24px;
   background-color: transparent;
@@ -54,17 +53,39 @@
   transition: color 0.2s ease;
 }
 
+.modal__close-btn img {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(0%) saturate(0%)
+    hue-rotate(180deg) brightness(90%);
+}
+
 .modal__close-btn:hover {
   color: black;
 }
 
 .modal__footer {
+  width: 498px;
+  height: 112px;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
   background-color: #fff;
 }
 
 .modal__text {
+  width: 115px;
+  height: 12px;
   margin: 0;
-  margin-left: 10px;
+  padding-left: 24px;
+  padding-top: 16px;
+  gap: 6px;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 1);
 }
 
 /* Form styles */
@@ -85,7 +106,7 @@
   left: 500px;
   font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -110,13 +131,18 @@
   padding-top: 48px;
   padding-right: 42px;
   font-size: 24px;
-  background: transparent;
+  background-color: transparent;
   cursor: pointer;
   font-weight: bold;
   transition: color 0.2s ease;
   border: 2px;
-  color: solid rgba(68, 67, 67, 0.151);
+  color: solid rgba(41, 39, 39, 0.151);
   transform: rotate(-180deg);
+}
+
+.modal__close-btn_type_form img {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(0%) saturate(0%)
+    hue-rotate(180deg) brightness(90%);
 }
 
 .modal__input {
@@ -164,14 +190,6 @@
   letter-spacing: 0%;
 }
 
-.modal__submit-btn:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.modal__submit-btn:disabled {
-  background: rgba(0, 0, 0, 0.3);
-}
-
 .modal__fieldset {
   font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
@@ -179,4 +197,12 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
+}
+
+.modal__submit-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal__submit-btn:disabled {
+  background: rgba(0, 0, 0, 0.3);
 }

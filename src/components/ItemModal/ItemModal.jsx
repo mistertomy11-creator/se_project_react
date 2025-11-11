@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-import closeForm from "../../assets/closeForm.svg";
+import closeModal from "../../assets/closeModal.svg";
 
 function ItemModal({ card, isOpen, onClose }) {
   return (
@@ -14,7 +14,7 @@ function ItemModal({ card, isOpen, onClose }) {
           onClick={onClose}
           aria-label="Close"
         >
-          <img src={closeForm} alt="Close" className="modal__close-btn" />
+          <img src={closeModal} alt="Close" className="modal__close-btn" />
         </button>
 
         {/* Image */}

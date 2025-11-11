@@ -1,5 +1,5 @@
 import { Children } from "react";
-import closeForm from "../../assets/closeForm.svg";
+import closeModal from "../../assets/closeModal.svg";
 
 function ModalWithForm({
   isOpen,
@@ -23,7 +23,7 @@ function ModalWithForm({
         >
           {" "}
           <img
-            src={closeForm}
+            src={closeModal}
             alt="Close"
             className="modal__close-btn modal__close-btn_type_form"
           />

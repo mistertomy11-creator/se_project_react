@@ -20,9 +20,9 @@
   color: rgba(255, 255, 255, 1);
   font-size: 36px;
   line-height: 1.1;
-  font-family: Cabinet Grotesk;
+  font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   letter-spacing: 0%;
   vertical-align: middle;
 }

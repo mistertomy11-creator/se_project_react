@@ -1,8 +1,20 @@
 .main__card-list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   padding: 0;
   margin: 0;
   list-style-type: disc;
+}
+
+.main__text {
+  width: 330px;
+  height: 25px;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 1);
+  line-height: 100%;
 }
