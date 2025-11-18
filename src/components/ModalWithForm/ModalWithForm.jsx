@@ -1,5 +1,6 @@
 import { Children } from "react";
 import closeModal from "../../assets/closeModal.svg";
+import "./ModalWithForm.css";
 
 function ModalWithForm({
   isOpen,
