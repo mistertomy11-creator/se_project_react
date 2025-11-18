@@ -1,5 +1,11 @@
 .header {
   display: flex;
+  justify-content: space-between;
+}
+
+.header__side {
+  display: flex;
+  align-items: center;
 }
 
 .header__logo {
@@ -17,8 +23,7 @@
 }
 
 .header__add-clothes-btn {
-  margin-left: auto;
-  margin-right: 20px;
+  margin: 0 20px;
   color: rgba(0, 0, 0, 1);
   border: none;
   background-color: white;
