@@ -16,13 +16,13 @@ function Main({ clothingItems, handleOpenItemModal, weatherData }) {
   // TODO - display correct temp
   // TODO - make temp unit change with context
   // TODO - filfer item cards based on weather
+
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
       <p className="main__text">
-        {weatherData?.temp?.[currentTempUnit] !== undefined
-          ? `Today is ${weatherData.temp[currentTempUnit]}° ${currentTempUnit} / You may want to wear:`
-          : "Loading weather..."}
+        Today is {weatherData.temp[currentTempUnit]}° {currentTempUnit} / You
+        may want to wear:
       </p>
       <ul className="main__card-list">
         {clothingItems

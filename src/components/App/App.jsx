@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+// I place this import
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 
-import { defaultClothingItems } from "../../utils/defaultClothingItems";
+import { addItem, getItems, deleteItem } from "../../utils/api";
+
+import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
+
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi";
+
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-// Done
-// TODO - apply all styles from Figma to all components
-// TODO - implement footer
-// TODO - modals
 function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [weatherData, setWeatherData] = useState({ name: "", temp: "0" });
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  // I placed these two lines of code as a test
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   function handleOpenItemModal(card) {
     setActiveModal("item-modal");
@@ -39,6 +45,50 @@ function App() {
     }
   }
 
+  function handleAddItemSubmit(inputValues) {
+    addItem(inputValues)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        // TODO - Close the modal (Done)
+        setActiveModal("");
+      })
+      .catch(console.error);
+  }
+
+  // I placed these three lines of code as a test
+  function handleDeleteRequest(item) {
+    setItemToDelete(item); // remember which item to delete
+    setActiveModal(""); //  close ItemModal
+    setIsConfirmOpen(true); //  open ConfirmDeleteModal
+  }
+
+  // TODO - Pass as a prop (I made some changes as a test)
+  // I changed item to itemDelete and i add setIsConfirm
+  /*function handleDeleteItem(itemToDelete) {
+    deleteItem(itemToDelete._id)
+      .then(() => {
+        // filter out the deleted item by its ID
+        setClothingItems((prevItems) =>
+          prevItems.filter(
+            (clothingItem) => clothingItem._id !== itemToDelete._id
+          )
+        );
+        setIsConfirmOpen(true);
+        // TODO - Close the modal (Done)
+        setActiveModal("");
+        // Close confirm modal
+        setItemToDelete(card);
+      })
+      .catch(console.error);
+  } */
+
+  // i placerd this as test
+  function handleDeleteItem(card) {
+    setItemToDelete(card); // remember which card to delete
+    setActiveModal(""); // 👈 close the big ItemModal
+    setIsConfirmOpen(true); // 👈 open the confirm popup
+  }
+
   useEffect(() => {
     getWeatherData()
       .then((data) => {
@@ -48,7 +98,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setClothingItems(defaultClothingItems);
+    getItems()
+      .then((items) => {
+        // TODO - make the new items appear first
+        const sortedItems = [...items].reverse();
+        setClothingItems(sortedItems);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -60,87 +116,67 @@ function App() {
           weatherData={weatherData}
           handleOpenAddGarmentModal={handleOpenAddGarmentModal}
         />
-        <Main
-          weatherData={weatherData}
-          clothingItems={clothingItems}
-          handleOpenItemModal={handleOpenItemModal}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                weatherData={weatherData}
+                clothingItems={clothingItems}
+                handleOpenItemModal={handleOpenItemModal}
+              />
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                clothingItems={clothingItems}
+                handleOpenAddGarmentModal={handleOpenAddGarmentModal}
+                handleOpenItemModal={handleOpenItemModal}
+              />
+            }
+          ></Route>
+        </Routes>
         <Footer />
         <ItemModal
           card={selectedCard}
           isOpen={activeModal === "item-modal"}
           onClose={() => setActiveModal(false)}
+          // handleDeleteItem={handleDeleteItem}
+          onDelete={handleDeleteRequest} //I placed this line as a test
         />
-        <ModalWithForm
+        <AddItemModal
           isOpen={activeModal === "add-garment-modal"}
           onClose={() => setActiveModal(false)}
-          title="New garment"
-          buttonText="Add garment"
-          name="add-garment-form"
-        >
-          <fieldset className="modal__fieldset">
-            <label htmlFor="add-garment-name-input" className="modal__label">
-              Name
-              <input
-                id="add-garment-name-input"
-                type="text"
-                placeholder="Name"
-                className="modal__input"
-              />
-            </label>
-            <label htmlFor="add-garment-name-input" className="modal__label">
-              Image
-              <input
-                id="add-garment-name-input"
-                type="text"
-                placeholder="Image URL"
-                className="modal__input"
-              />
-            </label>
-          </fieldset>
-          <fieldset className="modal__fieldset">
-            <legend>Select the weather type:</legend>
+          handleAddItemSubmit={handleAddItemSubmit}
+        />
+        {/*I placed this line as a test
+        <ConfirmDeleteModal
+          isOpen={isConfirmOpen}
+          onClose={() => setIsConfirmOpen(false)}
+          onConfirm={""}
+        />*/}
 
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="hot"
-                name="weather"
-                value="hot"
-              />
-              <label className="modal__label" htmlFor="hot">
-                Hot
-              </label>
-            </div>
-
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="warm"
-                name="weather"
-                value="warm"
-              />
-              <label className="modal__label" htmlFor="warm">
-                Warm
-              </label>
-            </div>
-
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="cold"
-                name="weather"
-                value="cold"
-              />
-              <label className="modal__label" htmlFor="cold">
-                Cold
-              </label>
-            </div>
-          </fieldset>
-        </ModalWithForm>
+        <ConfirmDeleteModal
+          isOpen={isConfirmOpen}
+          onClose={() => setIsConfirmOpen(false)}
+          onConfirm={() => {
+            if (itemToDelete) {
+              deleteItem(itemToDelete._id)
+                .then(() => {
+                  setClothingItems((prevItems) =>
+                    prevItems.filter(
+                      (clothingItem) => clothingItem._id !== itemToDelete._id
+                    )
+                  );
+                  setItemToDelete(null); // clear selection
+                  setIsConfirmOpen(false); // close modal
+                })
+                .catch(console.error);
+            }
+          }}
+        />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

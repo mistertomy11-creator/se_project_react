@@ -1,0 +1,35 @@
+.clothes-section__row {
+  display: flex;
+  gap: 20px;
+
+  color: rgba(0, 0, 0, 1);
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.clothes-section__card-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.clothes-section__btn {
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(250, 248, 248, 0.3);
+  padding-bottom: 16px;
+
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
