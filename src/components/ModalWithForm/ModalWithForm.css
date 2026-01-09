@@ -1,0 +1,30 @@
+.modal__submit {
+  background-color: #d3d3d3; /* light gray when disabled */
+  color: #fff;
+  border: none;
+  width: 86px;
+  height: 36px;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: not-allowed;
+  transition: background-color 0.2s ease;
+}
+
+.modal__submit_enabled {
+  background-color: #000; /* black when enabled */
+  cursor: pointer;
+}
+
+.modal__secondary-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  margin-top: 8px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal__secondary-btn:hover {
+  opacity: 0.7;
+}

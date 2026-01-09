@@ -7,6 +7,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 function ToggleSwitch() {
   // TODO - destructure the handler (done)
   const contextValue = useContext(CurrentTemperatureUnitContext);
+  const { setCurrentTempUnit } = contextValue;
 
   return (
     <label htmlFor="toggle-switch" className="toggle-switch">
@@ -14,7 +15,7 @@ function ToggleSwitch() {
         id="toggle-switch"
         type="checkbox"
         className="toggle-switch__checkbox"
-        onChange={contextValue.handleTempUnitChange}
+        onChange={() => setCurrentTempUnit((p) => (p === "F" ? "C" : "F"))}
       />
       <span className="toggle-switch__circle"></span>
       <span className="toggle-switch__value toggle-switch__value_left">F</span>

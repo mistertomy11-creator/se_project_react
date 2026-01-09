@@ -6,16 +6,30 @@ function Profile({
   clothingItems,
   handleOpenAddGarmentModal,
   handleOpenItemModal,
+  handleCardLike,
+  isLoggedIn,
+  currentUser,
+  onSignOut,
+  onEditProfile,
 }) {
   return (
-    <main className="profile">
-      <SideBar />
-      <ClothesSection
-        clothingItems={clothingItems}
-        handleOpenAddGarmentModal={handleOpenAddGarmentModal}
-        handleOpenItemModal={handleOpenItemModal}
-      />
-    </main>
+    <>
+      <button className="profile__signout-btn" onClick={onSignOut}>
+        Sign Out
+      </button>
+
+      <main className="profile">
+        <SideBar onEditProfile={onEditProfile} />
+        <ClothesSection
+          clothingItems={clothingItems}
+          handleOpenAddGarmentModal={handleOpenAddGarmentModal}
+          handleOpenItemModal={handleOpenItemModal}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+        />
+      </main>
+    </>
   );
 }
 

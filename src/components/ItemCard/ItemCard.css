@@ -28,3 +28,41 @@
   border-radius: 19px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card__likes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card__like-button {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Make the button visible even without an icon image */
+.card__like-button::before {
+  content: "♡";
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.card__like-button_active::before {
+  content: "♥";
+}
+
+.card__like-count {
+  font-size: 14px;
+}

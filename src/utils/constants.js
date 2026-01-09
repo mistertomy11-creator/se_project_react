@@ -1,6 +1,14 @@
 const coordinates = { lat: "31.9574397", lon: "-81.3214008" };
 const apiKey = "673a9d4fee9bed2ddaded524099e7195";
 
+{
+  /*const BaseUrl =
+  process.env.NODE_ENV === "production"*/
+}
+const BaseUrl = import.meta.env.PROD
+  ? "https://api.wisw.jumpingcrab.com"
+  : "http://localhost:3001";
+
 // TODO- add the other werather image - Done
 const weatherConditionImages = {
   day: {
@@ -26,7 +34,7 @@ const weatherConditionImages = {
     },
     snowy: {
       name: "snowy",
-      image: new URL("../assets/day/snowry.svg", import.meta.url).href,
+      image: new URL("../assets/day/snowy.svg", import.meta.url).href,
     },
     stromy: {
       name: "stromy",
@@ -56,7 +64,7 @@ const weatherConditionImages = {
     },
     snowy: {
       name: "snowy",
-      image: new URL("../assets/night/snowry.svg", import.meta.url).href,
+      image: new URL("../assets/night/snowy.svg", import.meta.url).href,
     },
     stromy: {
       name: "stromy",
@@ -65,4 +73,4 @@ const weatherConditionImages = {
   },
 };
 
-export { coordinates, apiKey, weatherConditionImages };
+export { coordinates, apiKey, weatherConditionImages, BaseUrl };

@@ -1,0 +1,29 @@
+/* Error styling for form controls */
+.modal__input_invalid {
+  border: 2px solid #ff6b6b;
+  background-color: #ffe0e0;
+}
+
+.modal__input_invalid:focus {
+  outline: none;
+  border-color: #ff4444;
+  box-shadow: 0 0 4px rgba(255, 107, 107, 0.3);
+}
+
+.modal__label_invalid .modal__error {
+  color: #ff0000;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.modal__error {
+  color: #ff0000;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: none;
+}
+
+.modal__label_invalid .modal__error {
+  display: block;
+}

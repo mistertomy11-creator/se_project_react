@@ -58,4 +58,54 @@
   display: flex;
   text-decoration: none;
   color: #000;
+  border: none;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.header__avatar,
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.header__avatar {
+  object-fit: cover;
+}
+
+.header__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #555;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.header__auth {
+  display: flex;
+  align-items: center; /* vertically center */
+  gap: 8px; /* space between buttons */
+  margin-left: 8px;
+}
+
+.header__auth button {
+  background: none; /* no background */
+  border: none; /* remove border */
+  gap: 8px; /* clickable area */
+  cursor: pointer; /* pointer on hover */
+  color: black; /* primary color */
+  transition: color 0.2s;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
 }

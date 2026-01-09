@@ -1,35 +1,69 @@
-const baseUrl = "http://localhost:3001";
+import { BaseUrl } from "../utils/constants";
 
-function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+function checkResponse(res) {
+  if (!res.ok) {
+    return res
+      .text()
+      .then((text) => Promise.reject(text || `Error: ${res.status}`));
+  }
+
+  // 204 No Content: nothing to parse
+  if (res.status === 204) return Promise.resolve();
+
+  // Try JSON, but don't crash if body is empty
+  return res.text().then((text) => (text ? JSON.parse(text) : {}));
 }
 
+// Unprotected (allowed for unauthorized users)
+function getItems() {
+  return fetch(`${BaseUrl}/items`).then(checkResponse);
+}
+
+// Protected (allowed for authorized users only)
 function addItem({ name, imageUrl, weather }) {
-  return fetch(`${baseUrl}/items`, {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${BaseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, imageUrl, weather }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
-// TODO"S
-// - different parameter (just the id instead of the object)
-// - different method
-// - no body
-// - embed the ID in the URL
+// protected
+function changeLikeStatus(itemId, isLiked) {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${BaseUrl}/items/${itemId}/likes`, {
+    method: isLiked ? "DELETE" : "PUT",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
 
+// Protected (allowed for authorized users only)
 function deleteItem(id) {
-  return fetch(`${baseUrl}/items/${id}`, {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${BaseUrl}/items/${id}`, {
     method: "DELETE",
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 }
 
-export { getItems, addItem, deleteItem };
+function updateProfile({ name, avatar }) {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${BaseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export { getItems, addItem, changeLikeStatus, deleteItem, updateProfile };
