@@ -1,7 +1,7 @@
 ## Project Pitch Video
 
-Check out [this video](https://loom.com/share/folder/6f72cc02040841528e1ccbc326ee7893), where I describe my
-project and some challenges I faced while building it.
+Check out [this video](https://www.loom.com/share/8762587628374cbcb4a02497041a4fa4), where I describe my
+project and some challenges I faced while building it. This project highlights my ability to build responsive, scalable frontend applications that integrate cleanly with secure APIs, demonstrates my ability to design secure, resilient backend systems ready for production.”
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
