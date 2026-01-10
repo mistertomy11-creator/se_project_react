@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { apiKey, coordinates } from "./constants";
 
 export function getWeatherData() {
@@ -28,11 +27,6 @@ function parseWeatherData(data) {
 
   return parsedData;
 }
-
-// Done
-// TODO - write a function isDay
-// params: sunrise, sunset, and currentTimesTemp
-// returns: true  if current is between sunrise and sunset
 
 function isDay({ sunrise, sunset }, timestamp) {
   const timestampInSeconds = 1000 * timestamp;

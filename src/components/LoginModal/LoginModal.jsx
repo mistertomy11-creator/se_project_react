@@ -36,6 +36,8 @@ function LoginModal({ isOpen, onClose, handleLogin, onRegisterClick }) {
       handleSubmit={handleSubmit}
       isDisabled={!values.email || !values.password}
       onRegisterClick={onRegisterClick}
+      buttonText="Log In" /*  ADD */
+      showAuthSwitch={true} /*  ADD */
     >
       <label className="modal__label">
         Email

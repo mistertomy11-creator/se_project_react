@@ -58,6 +58,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
       buttonText="Add garment"
       name="add-garment-form"
       handleSubmit={handleSubmit}
+      isDisabled={!isValid}
     >
       <fieldset className="modal__fieldset">
         <label

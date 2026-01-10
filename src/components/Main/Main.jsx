@@ -4,7 +4,14 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ clothingItems, handleOpenItemModal, weatherData }) {
+function Main({
+  clothingItems,
+  handleOpenItemModal,
+  weatherData,
+  onCardLike,
+  currentUser,
+  isLoggedIn,
+}) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
 
   function getWeatherType(tempF) {
@@ -12,10 +19,6 @@ function Main({ clothingItems, handleOpenItemModal, weatherData }) {
     if (tempF >= 60) return "warm";
     return "cold";
   }
-  // Done
-  // TODO - display correct temp
-  // TODO - make temp unit change with context
-  // TODO - filfer item cards based on weather
 
   return (
     <main className="main">
@@ -32,6 +35,9 @@ function Main({ clothingItems, handleOpenItemModal, weatherData }) {
               key={item._id}
               data={item}
               onCardClick={handleOpenItemModal}
+              onCardLike={onCardLike}
+              currentUser={currentUser}
+              isLoggedIn={isLoggedIn}
             />
           ))}
       </ul>

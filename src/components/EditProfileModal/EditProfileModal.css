@@ -1,0 +1,128 @@
+/* Only affects EditProfileModal (scoped) */
+.edit-profile-modal {
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+/* IMPORTANT:
+   Do NOT restyle .modal globally here.
+   ItemModal.css controls .modal visibility + transitions. */
+
+/* Container in form style */
+.edit-profile-modal .modal__container.modal__container_type_form {
+  width: 496px;
+  max-width: 100%;
+  min-height: 304px;
+
+  background: #f8f8f8;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+
+  padding: 28px 28px 24px;
+}
+
+/* Close button */
+.edit-profile-modal .modal__close-btn.modal__close-btn_type_form {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 24px;
+  height: 24px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 20px;
+  line-height: 24px;
+
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.edit-profile-modal .modal__close-btn.modal__close-btn_type_form:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Title (you already made this unique ✅) */
+.edit-profile-modal__title {
+  margin: 0 0 22px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+}
+
+/* Form spacing */
+.edit-profile-modal .modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Labels */
+.edit-profile-modal .modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Inputs underline style */
+.edit-profile-modal .modal__input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+
+  padding: 6px 0 10px;
+  font-size: 16px;
+  font-weight: 500;
+
+  outline: none;
+  width: 100%;
+}
+
+.edit-profile-modal .modal__input:focus {
+  border-bottom-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Save button */
+.edit-profile-modal .modal__submit {
+  margin-top: 12px;
+  width: 140px;
+  height: 40px;
+
+  border: none;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+
+  cursor: pointer;
+}
+
+.edit-profile-modal .modal__submit:hover {
+  opacity: 0.85;
+}
+
+.edit-profile-modal .modal__submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .edit-profile-modal .modal__container.modal__container_type_form {
+    width: 100%;
+    min-height: auto;
+    padding: 22px 18px 18px;
+  }
+
+  .edit-profile-modal .modal__submit {
+    width: 100%;
+  }
+}

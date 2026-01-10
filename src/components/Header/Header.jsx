@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
 import "./Header.css";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";

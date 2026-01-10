@@ -3,12 +3,10 @@ import useFormWithValidation from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
-  // Memoize custom validators so they don't get recreated on every render
   const customValidators = useCallback(() => {
     return {
       email: (value) => {
         if (!value) return "Email is required";
-        // Simple email regex for validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value))
           return "Please enter a valid email address";
@@ -61,8 +59,10 @@ function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
       title="Sign up"
       name="register-form"
       handleSubmit={handleSubmit}
-      isDisabled={!values.email || !values.password || !values.name} // disable if either field is empty
+      isDisabled={!values.email || !values.password || !values.name}
       onLoginClick={onLoginClick}
+      buttonText="Sign Up" /* ✅ ADD */
+      showAuthSwitch={true} /* ✅ ADD */
     >
       <label
         className={`modal__label ${errors.name && "modal__label_invalid"}`}

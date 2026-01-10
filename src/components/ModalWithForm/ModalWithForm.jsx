@@ -9,8 +9,16 @@ function ModalWithForm({
   title,
   name,
   isDisabled,
-  onRegisterClick, // used for the Sign Up button
+
+  // NEW: controls the main submit button label for any form modal
+  buttonText,
+
+  // Auth-only optional props
+  onRegisterClick,
   onLoginClick,
+
+  //  NEW: Only show the "or Sign Up / or Log In" buttons when true
+  showAuthSwitch = false,
 }) {
   return (
     <div className={`modal${isOpen ? " modal_is-opened" : ""}`}>
@@ -29,7 +37,7 @@ function ModalWithForm({
         <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
 
-          {/* PRIMARY BUTTON — Log In or Sign Up */}
+          {/* PRIMARY BUTTON — Uses buttonText if provided */}
           <button
             type="submit"
             className={`modal__submit ${
@@ -37,11 +45,11 @@ function ModalWithForm({
             }`}
             disabled={isDisabled}
           >
-            {title === "Sign in" ? "Log In" : "Sign Up"}
+            {buttonText || "Submit"}
           </button>
 
-          {/* SECONDARY BUTTON — Only on Login modal */}
-          {title === "Sign in" ? (
+          {/*  Auth switch buttons — only show on auth modals */}
+          {showAuthSwitch && title === "Sign in" && (
             <button
               type="button"
               className="modal__secondary-btn"
@@ -49,7 +57,9 @@ function ModalWithForm({
             >
               or Sign Up
             </button>
-          ) : (
+          )}
+
+          {showAuthSwitch && title !== "Sign in" && (
             <button
               type="button"
               className="modal__secondary-btn"

@@ -19,45 +19,50 @@ function EditProfileModal({ isOpen, onClose, onSubmit }) {
     onSubmit({ name, avatar });
   }
 
-  if (!isOpen) return null;
-
   return (
-    <div className="modal">
-      <div className="modal__content">
-        <button type="button" className="modal__close" onClick={onClose}>
+    <div className={`modal ${isOpen ? "modal_is-opened" : ""}`}>
+      <div className="modal__container modal__container_type_form">
+        <button
+          type="button"
+          className="modal__close-btn modal__close-btn_type_form"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
           ✕
         </button>
 
-        <h2 className="modal__title">Change profile</h2>
+        <h2 className="edit-profile-modal__title">Change profile data</h2>
 
         <form className="modal__form" onSubmit={handleSubmit}>
-          <label className="modal__label">
-            Name
-            <input
-              className="modal__input"
-              type="text"
-              value={name}
-              minLength="2"
-              maxLength="30"
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
+          <fieldset className="modal__fieldset">
+            <label className="modal__label">
+              Name *
+              <input
+                className="modal__input"
+                type="text"
+                value={name}
+                minLength="2"
+                maxLength="30"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
 
-          <label className="modal__label">
-            Avatar URL
-            <input
-              className="modal__input"
-              type="url"
-              value={avatar}
-              onChange={(e) => setAvatar(e.target.value)}
-              required
-            />
-          </label>
+            <label className="modal__label">
+              Avatar *
+              <input
+                className="modal__input"
+                type="url"
+                value={avatar}
+                onChange={(e) => setAvatar(e.target.value)}
+                required
+              />
+            </label>
 
-          <button className="modal__submit" type="submit">
-            Save
-          </button>
+            <button className="modal__submit" type="submit">
+              Save changes
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>

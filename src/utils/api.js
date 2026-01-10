@@ -33,8 +33,7 @@ function addItem({ name, imageUrl, weather }) {
 }
 
 // protected
-function changeLikeStatus(itemId, isLiked) {
-  const token = localStorage.getItem("jwt");
+function changeLikeStatus(itemId, isLiked, token) {
   return fetch(`${BaseUrl}/items/${itemId}/likes`, {
     method: isLiked ? "DELETE" : "PUT",
     headers: {
@@ -54,8 +53,7 @@ function deleteItem(id) {
   }).then(checkResponse);
 }
 
-function updateProfile({ name, avatar }) {
-  const token = localStorage.getItem("jwt");
+function updateProfile({ name, avatar }, token) {
   return fetch(`${BaseUrl}/users/me`, {
     method: "PATCH",
     headers: {

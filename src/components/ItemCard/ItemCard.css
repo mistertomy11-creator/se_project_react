@@ -8,12 +8,10 @@
 }
 
 .card__title {
-  position: absolute;
-  border-radius: 4px;
-  padding: 2px 12px 2px 12px;
-  top: 2px;
   margin: 0;
+  padding: 2px 12px;
   background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
   font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -30,10 +28,15 @@
 }
 
 .card__header {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
+  background: none;
+  padding: 0;
 }
 
 .card__likes {
@@ -43,20 +46,26 @@
 }
 
 .card__like-button {
-  width: 18px;
+  width: 20px;
   height: 18px;
+  background-image: url("../../assets/heart-outline.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   border: none;
-  background: transparent;
+  background-color: transparent;
   cursor: pointer;
   padding: 0;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
 }
 
-/* Make the button visible even without an icon image */
-.card__like-button::before {
-  content: "♡";
-  display: block;
-  font-size: 18px;
-  line-height: 18px;
+.card__like-button:hover {
+  opacity: 0.6;
+}
+
+.card__like-button_active {
+  background-image: url("../../assets/heart-filled.svg");
 }
 
 .card__like-button_active::before {

@@ -1,5 +1,3 @@
-import React from "react";
-import closeIcon from "../../assets/closeModal.svg";
 import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({ isOpen, onClose, onConfirm }) {
